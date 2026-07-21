@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOP DOG · Estrategia de Marketing · Ubaté</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Permanent+Marker&family=Space+Grotesk:wght@300;400;500;600;700&family=Archivo+Black&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+  :root{
+    --bg:#0a0612;
+    --bg-2:#150a22;
+    --surface:#1a0e2a;
+    --pink:#ff2d95;
+    --cyan:#00f0ff;
+    --yellow:#ffe600;
+    --green:#39ff14;
+    --orange:#ff6b35;
+    --red:#ff3838;
+    --text:#ffffff;
+    --muted:#a89cb8;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+  .font-display{ font-family:'Bungee', cursive; letter-spacing:0.02em; }
+  .font-marker{ font-family:'Permanent Marker', cursive; }
+  .font-black{ font-family:'Archivo Black', sans-serif; }
+
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:.08;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .vignette{
+    position:fixed; inset:0; pointer-events:none; z-index:2;
+    background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%);
+  }
+
+  .neon-pink{ color:#fff; text-shadow:0 0 4px #fff, 0 0 11px #fff, 0 0 19px var(--pink), 0 0 40px var(--pink), 0 0 80px var(--pink); }
+  .neon-cyan{ color:#fff; text-shadow:0 0 4px #fff, 0 0 11px #fff, 0 0 19px var(--cyan), 0 0 40px var(--cyan), 0 0 80px var(--cyan); }
+  .neon-yellow{ color:#fff; text-shadow:0 0 4px #fff, 0 0 10px #fff, 0 0 18px var(--yellow), 0 0 38px var(--yellow); }
+  .neon-green{ color:#fff; text-shadow:0 0 4px #fff, 0 0 10px #fff, 0 0 18px var(--green), 0 0 38px var(--green); }
+  .neon-orange{ color:#fff; text-shadow:0 0 4px #fff, 0 0 10px #fff, 0 0 18px var(--orange), 0 0 38px var(--orange); }
+  .neon-red{ color:#fff; text-shadow:0 0 4px #fff, 0 0 10px #fff, 0 0 18px var(--red), 0 0 38px var(--red); }
+
+  @keyframes flicker{
+    0%,18%,22%,25%,53%,57%,100%{ opacity:1; }
+    20%,24%,55%{ opacity:.55; }
+    21%,23%{ opacity:.85; }
+  }
+  .flicker{ animation:flicker 4s infinite; }
+  .flicker-slow{ animation:flicker 7s infinite; }
+
+  @keyframes glowPulse{
+    0%,100%{ filter:drop-shadow(0 0 14px var(--pink)) drop-shadow(0 0 30px rgba(255,45,149,.4)); }
+    50%{ filter:drop-shadow(0 0 28px var(--pink)) drop-shadow(0 0 60px rgba(255,45,149,.7)); }
+  }
+  .glow-pulse{ animation:glowPulse 3s ease-in-out infinite; }
+
+  @keyframes floatY{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-18px); }
+  }
+  .float-y{ animation:floatY 5s ease-in-out infinite; }
+
+  .marquee{ display:flex; gap:3rem; animation:scroll 25s linear infinite; }
+  @keyframes scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  .neon-card{
+    background:linear-gradient(160deg, rgba(26,14,42,.9), rgba(10,6,18,.95));
+    border:1px solid rgba(255,255,255,.08);
+    backdrop-filter:blur(8px);
+    position:relative;
+    transition:transform .4s ease, border-color .4s ease;
+  }
+  .neon-card::before{
+    content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px;
+    background:linear-gradient(135deg, var(--pink), transparent 40%, transparent 60%, var(--cyan));
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor; mask-composite:exclude;
+    opacity:.5; transition:opacity .4s ease;
+  }
+  .neon-card:hover{ transform:translateY(-8px); }
+  .neon-card:hover::before{ opacity:1; }
+
+  .btn-neon{
+    position:relative; display:inline-flex; align-items:center; gap:.6rem;
+    padding:.95rem 2rem; border-radius:999px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; font-size:.85rem;
+    background:linear-gradient(90deg, var(--pink), var(--orange));
+    color:#fff; box-shadow:0 0 20px rgba(255,45,149,.5), inset 0 0 12px rgba(255,255,255,.2);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .btn-neon:hover{ transform:scale(1.05); box-shadow:0 0 35px rgba(255,45,149,.8); }
+  .btn-ghost{
+    border:1px solid var(--cyan); color:var(--cyan); padding:.9rem 1.8rem; border-radius:999px;
+    font-weight:600; letter-spacing:.08em; text-transform:uppercase; font-size:.8rem;
+    text-shadow:0 0 8px var(--cyan); box-shadow:0 0 16px rgba(0,240,255,.2), inset 0 0 12px rgba(0,240,255,.1);
+    transition:all .25s;
+    display:inline-flex; align-items:center; gap:.5rem;
+  }
+  .btn-ghost:hover{ background:rgba(0,240,255,.1); box-shadow:0 0 28px rgba(0,240,255,.5); }
+
+  .ring-bg{ stroke:rgba(255,255,255,.08); }
+  .ring-fill{ stroke-linecap:round; transform:rotate(-90deg); transform-origin:center; transition:stroke-dashoffset 1.5s ease; }
+
+  .reveal{ opacity:0; transform:translateY(40px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  .divider-neon{
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--pink), var(--cyan), transparent);
+    box-shadow:0 0 20px var(--pink);
+  }
+
+  .nav-blur{ background:rgba(10,6,18,.7); backdrop-filter:blur(14px); border-bottom:1px solid rgba(255,45,149,.2); }
+
+  ::-webkit-scrollbar{ width:10px; }
+  ::-webkit-scrollbar-track{ background:#0a0612; }
+  ::-webkit-scrollbar-thumb{ background:linear-gradient(var(--pink), var(--cyan)); border-radius:10px; }
+
+  .timeline-line{
+    background:linear-gradient(180deg, var(--pink), var(--yellow), var(--cyan));
+    box-shadow:0 0 18px var(--pink);
+  }
+
+  .tag{
+    display:inline-block; padding:.3rem .8rem; border-radius:999px;
+    font-size:.7rem; font-weight:700; letter-spacing:.15em; text-transform:uppercase;
+    border:1px solid currentColor;
+  }
+
+  .grid-bg{
+    background-image:
+      linear-gradient(rgba(255,45,149,.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,240,255,.06) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
+
+  .blob{
+    position:absolute; border-radius:50%; filter:blur(80px); opacity:.35; pointer-events:none;
+  }
+
+  .img-zoom{ overflow:hidden; }
+  .img-zoom img{ transition:transform .6s ease; }
+  .img-zoom:hover img{ transform:scale(1.1); }
+
+  @media (max-width:768px){
+    .hide-mobile{ display:none; }
+  }
+
+  /* Smoke effect for wings */
+  @keyframes smokeRise{
+    0%{ transform:translateY(0) scale(0.8); opacity:0; }
+    20%{ opacity:0.6; }
+    100%{ transform:translateY(-60px) scale(1.4); opacity:0; }
+  }
+  .smoke-particle{
+    position:absolute; width:30px; height:30px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,255,255,.4), transparent 70%);
+    animation:smokeRise 3s ease-out infinite;
+  }
+</style>
+</head>
+<body class="relative">
+
+<div class="grain"></div>
+<div class="vignette"></div>
+
+<div class="blob" style="width:500px; height:500px; background:#ff2d95; top:-100px; left:-150px;"></div>
+<div class="blob" style="width:400px; height:400px; background:#00f0ff; top:600px; right:-100px;"></div>
+<div class="blob" style="width:350px; height:350px; background:#ffe600; top:1400px; left:30%; opacity:.15;"></div>
+<div class="blob" style="width:380px; height:380px; background:#ff3838; top:2200px; right:10%; opacity:.18;"></div>
+
+<!-- ============ NAV ============ -->
+<nav class="fixed top-0 left-0 right-0 z-50 nav-blur">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#hero" class="flex items-center gap-3">
+      <!-- Asegúrate de tener logo.png en tu carpeta -->
+      <img src="logo.png" alt="Top Dog Logo" class="h-12 w-auto glow-pulse">
+      <div class="leading-none">
+        <div class="font-display text-lg neon-pink">TOP DOG</div>
+        <div class="text-[10px] tracking-[0.4em] text-cyan-300">UBATÉ · COL</div>
+      </div>
+    </a>
+    <div class="hide-mobile flex items-center gap-8 text-sm font-medium tracking-wider uppercase">
+      <a href="#angie" class="hover:text-pink-400 transition">Liderazgo</a>
+      <a href="#pilares" class="hover:text-pink-400 transition">Pilares</a>
+      <a href="#rutina" class="hover:text-pink-400 transition">Rutina</a>
+      <a href="#menu" class="hover:text-pink-400 transition">Menú</a>
+      <a href="#whatsapp" class="btn-ghost">WhatsApp</a>
+    </div>
+    <a href="#whatsapp" class="md:hidden btn-ghost text-xs">WhatsApp</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden pt-24">
+  <div class="absolute inset-0 z-0">
+    <img src="local-exterior.jpg" alt="Top Dog Local Noche" class="w-full h-full object-cover opacity-60">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0612]/70 via-[#0a0612]/60 to-[#0a0612]"></div>
+    <div class="absolute inset-0 grid-bg opacity-50"></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full">
+    <div class="reveal">
+      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-pink-500/40 bg-pink-500/10">
+        <span class="w-2 h-2 rounded-full bg-pink-500 animate-pulse"></span>
+        <span class="text-xs tracking-[0.3em] uppercase text-pink-300">Plan de Marketing 2026</span>
+      </div>
+      <h1 class="font-display text-6xl md:text-9xl leading-[0.9] mb-6">
+        <span class="neon-pink flicker">TOP</span><br>
+        <span class="neon-cyan flicker-slow">DOG</span>
+      </h1>
+      <p class="font-marker text-2xl text-white/90 mb-4">Calle · Carbón · Sabor</p>
+      <p class="text-lg text-white/70 max-w-xl mb-8 leading-relaxed">
+        Más que perros y alitas: <span class="text-pink-400 font-semibold">una historia de liderazgo</span> que arde en el Parque Los Libertadores, Ubaté. Esta es la estrategia que enciende la marca noche tras noche.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#pilares" class="btn-neon">
+          <i class="fa-solid fa-fire"></i> Ver Estrategia
+        </a>
+        <a href="#menu" class="btn-ghost">
+          <i class="fa-solid fa-drumstick-bite"></i> El Menú
+        </a>
+      </div>
+
+      <div class="grid grid-cols-3 gap-6 mt-12 max-w-md">
+        <div>
+          <div class="font-display text-3xl neon-yellow">12</div>
+          <div class="text-xs text-white/60 uppercase tracking-wider">Salsas</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl neon-pink">18</div>
+          <div class="text-xs text-white/60 uppercase tracking-wider">Toppings</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl neon-red">100%</div>
+          <div class="text-xs text-white/60 uppercase tracking-wider">Ubaté</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal relative">
+      <div class="relative neon-card rounded-3xl p-8 overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-red-500/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-cyan-500/30 rounded-full blur-3xl"></div>
+        <div class="relative flex flex-col items-center text-center">
+          <img src="logo.png" alt="Top Dog Logo" class="h-72 w-auto float-y drop-shadow-[0_0_30px_rgba(255,45,149,0.6)]">
+          <div class="mt-6 font-marker text-2xl neon-yellow">¡Arma tu Acomodo!</div>
+          <p class="text-sm text-white/60 mt-2">Frente a la Basílica · Parque Los Libertadores</p>
+          <div class="flex flex-wrap gap-2 mt-6 justify-center">
+            <span class="tag text-red-400">Alitas BBQ</span>
+            <span class="tag text-pink-400">Perros</span>
+            <span class="tag text-cyan-400">Burgers</span>
+            <span class="tag text-yellow-400">Toppings</span>
+            <span class="tag text-green-400">ASMR</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 z-10 py-4 border-y border-pink-500/20 bg-black/40 backdrop-blur-sm overflow-hidden">
+    <div class="marquee whitespace-nowrap font-display text-2xl">
+      <span class="neon-red">★ TOP DOG</span>
+      <span class="neon-orange">ALITAS BBQ</span>
+      <span class="neon-pink">PERROS CALIENTES</span>
+      <span class="neon-yellow">TOP BURGER</span>
+      <span class="neon-green">QUESO DOBLE CREMA</span>
+      <span class="neon-orange">18 TOPPINGS</span>
+      <span class="neon-pink">12 SALSAS</span>
+      <span class="neon-cyan">PARQUE LOS LIBERTADORES</span>
+      <span class="neon-red">★ TOP DOG</span>
+      <span class="neon-orange">ALITAS BBQ</span>
+      <span class="neon-pink">PERROS CALIENTES</span>
+      <span class="neon-yellow">TOP BURGER</span>
+      <span class="neon-green">QUESO DOBLE CREMA</span>
+      <span class="neon-orange">18 TOPPINGS</span>
+      <span class="neon-pink">12 SALSAS</span>
+      <span class="neon-cyan">PARQUE LOS LIBERTADORES</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANGIE SECTION ============ -->
+<section id="angie" class="relative py-28 px-6 overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-30"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span class="tag text-cyan-400 mb-4 inline-block">Capítulo 01</span>
+      <h2 class="font-display text-5xl md:text-7xl mb-4">
+        <span class="neon-pink">EL NUEVO</span><br>
+        <span class="neon-cyan">EJE CENTRAL</span>
+      </h2>
+      <p class="font-marker text-xl text-yellow-300">El Liderazgo de Angie Murcia</p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-10 items-center">
+      <div class="lg:col-span-2 reveal">
+        <div class="relative">
+          <div class="neon-card rounded-3xl p-8 relative overflow-hidden">
+            <div class="absolute top-4 right-4 text-xs tracking-[0.3em] text-pink-400 uppercase">CEO · Founder</div>
+            <div class="flex flex-col items-center text-center">
+              <div class="relative w-48 h-48 rounded-full overflow-hidden border-4 border-pink-500 mb-6" style="box-shadow:0 0 40px rgba(255,45,149,.6);">
+                <img src="local-exterior.jpg" alt="Top Dog Local" class="w-full h-full object-cover">
+              </div>
+              <h3 class="font-display text-3xl neon-pink mb-1">ANGIE MURCIA</h3>
+              <p class="text-sm text-white/60 mb-4">Líder · Top Dog Ubaté</p>
+              <div class="font-marker text-lg text-cyan-300 italic">
+                "Una promesa hecha a mi padre.<br>Una marca hecha con mi gente."
+              </div>
+              <div class="mt-6 grid grid-cols-2 gap-3 w-full">
+                <div class="bg-pink-500/10 border border-pink-500/30 rounded-xl p-3 text-center">
+                  <div class="font-display text-xl neon-pink">Resiliencia</div>
+                </div>
+                <div class="bg-cyan-500/10 border border-cyan-500/30 rounded-xl p-3 text-center">
+                  <div class="font-display text-xl neon-cyan">Equipo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 reveal">
+        <p class="text-2xl md:text-3xl font-light leading-relaxed mb-6 text-white/90">
+          Toda la comunicación gira hacia el <span class="neon-pink font-bold">empoderamiento</span>. La historia ya no es de una pareja, sino de una mujer resiliente, líder de su propio equipo, que lleva las riendas del negocio para honrar la promesa que le hizo a su padre <span class="text-yellow-300 font-semibold">Leonardo Murcia</span>.
+        </p>
+        <p class="text-lg text-white/70 leading-relaxed mb-8">
+          Esto genera una conexión genuina y directa con la comunidad de Ubaté. Angie abre el local, elige los quesos, supervisa la parrilla y narra la marca desde su voz.
+        </p>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 text-xl shrink-0">
+              <i class="fa-solid fa-feather-pointed"></i>
+            </div>
+            <div>
+              <div class="font-bold text-pink-300 mb-1">Voz Propia</div>
+              <p class="text-sm text-white/60">Vlogs narrados por Angie, sin producción excesiva.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/20 flex items-center justify-center text-cyan-400 text-xl shrink-0">
+              <i class="fa-solid fa-people-roof"></i>
+            </div>
+            <div>
+              <div class="font-bold text-cyan-300 mb-1">Comunidad</div>
+              <p class="text-sm text-white/60">Conexión real frente a la Basílica de Ubaté.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center text-yellow-400 text-xl shrink-0">
+              <i class="fa-solid fa-hand-fist"></i>
+            </div>
+            <div>
+              <div class="font-bold text-yellow-300 mb-1">Promesa</div>
+              <p class="text-sm text-white/60">Honrar el legado de Leonardo Murcia con cada venta.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10">
+            <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400 text-xl shrink-0">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <div>
+              <div class="font-bold text-green-300 mb-1">Territorio</div>
+              <p class="text-sm text-white/60">Parque Los Libertadores, corazón de Ubaté.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ THREE PILLARS ============ -->
+<!-- El contenido de la sección pilares y rutina queda intacto (no usaba imágenes externas) -->
+<section id="pilares" class="relative py-28 px-6 overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full" style="background:radial-gradient(circle, rgba(255,45,149,.15), transparent 70%);"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full" style="background:radial-gradient(circle, rgba(0,240,255,.15), transparent 70%);"></div>
+  </div>
+
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span class="tag text-yellow-400 mb-4 inline-block">Capítulo 02</span>
+      <h2 class="font-display text-5xl md:text-7xl mb-4">
+        <span class="neon-yellow">LOS 3 PILARES</span>
+      </h2>
+      <p class="font-marker text-xl text-pink-300">Del dicho al hecho · Contenido 100% ejecutable</p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6">
+      <!-- Pillar 1: 30% -->
+      <div class="reveal neon-card rounded-3xl p-8 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between mb-6">
+            <span class="tag text-pink-400">Pilar 01</span>
+            <span class="font-display text-5xl neon-pink">30%</span>
+          </div>
+          <div class="flex justify-center my-6">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" class="ring-bg" stroke-width="8"/>
+              <circle cx="60" cy="60" r="50" fill="none" class="ring-fill" stroke="#ff2d95" stroke-width="8"
+                stroke-dasharray="314" stroke-dashoffset="220" style="filter:drop-shadow(0 0 8px #ff2d95);"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl mb-3 neon-pink">HISTORIA Y DÍA A DÍA</h3>
+          <p class="text-white/70 text-sm mb-6 leading-relaxed">
+            Mostrar a Angie abriendo el local frente a la Basílica, eligiendo los quesos locales <span class="text-pink-300">(doble crema, pera)</span> y liderando la operación.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-mobile-screen text-pink-400"></i>
+              <span>Historias rápidas y auténticas desde el celular</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-video text-pink-400"></i>
+              <span>Formato Vlog narrado por Angie</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-heart text-pink-400"></i>
+              <span>Humaniza la marca</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-white/10">
+            <div class="text-xs uppercase tracking-widest text-white/40 mb-1">Objetivo</div>
+            <div class="text-sm text-white/80">Conexión emocional con la comunidad</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 2: 50% -->
+      <div class="reveal neon-card rounded-3xl p-8 relative overflow-hidden" style="border-color:rgba(255,230,0,.3);">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-yellow-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-yellow-500 text-black text-[10px] font-bold tracking-wider">GANCHO DE VENTAS</div>
+        <div class="relative">
+          <div class="flex items-center justify-between mb-6">
+            <span class="tag text-yellow-400">Pilar 02</span>
+            <span class="font-display text-5xl neon-yellow">50%</span>
+          </div>
+          <div class="flex justify-center my-6">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" class="ring-bg" stroke-width="8"/>
+              <circle cx="60" cy="60" r="50" fill="none" class="ring-fill" stroke="#ffe600" stroke-width="8"
+                stroke-dasharray="314" stroke-dashoffset="157" style="filter:drop-shadow(0 0 8px #ffe600);"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl mb-3 neon-yellow">ANTOJO VISUAL<br>"ARMA TU ACOMODO"</h3>
+          <p class="text-white/70 text-sm mb-6 leading-relaxed">
+            Videos rápidos en primera persona <span class="text-yellow-300">(POV)</span> mostrando cómo un cliente elige sus ingredientes entre las <span class="text-yellow-300">12 salsas</span> y <span class="text-yellow-300">18 toppings</span>.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-camera text-yellow-400"></i>
+              <span>Macrofotografía del queso fundido</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-volume-high text-yellow-400"></i>
+              <span>ASMR · sonido real de la parrilla</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-eye text-yellow-400"></i>
+              <span>Cámara POV: el cliente arma su plato</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-white/10">
+            <div class="text-xs uppercase tracking-widest text-white/40 mb-1">Objetivo</div>
+            <div class="text-sm text-white/80">Estimular el apetito y educar sobre personalización</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pillar 3: 20% -->
+      <div class="reveal neon-card rounded-3xl p-8 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-500/20 rounded-full blur-3xl"></div>
+        <div class="relative">
+          <div class="flex items-center justify-between mb-6">
+            <span class="tag text-cyan-400">Pilar 03</span>
+            <span class="font-display text-5xl neon-cyan">20%</span>
+          </div>
+          <div class="flex justify-center my-6">
+            <svg width="120" height="120" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="50" fill="none" class="ring-bg" stroke-width="8"/>
+              <circle cx="60" cy="60" r="50" fill="none" class="ring-fill" stroke="#00f0ff" stroke-width="8"
+                stroke-dasharray="314" stroke-dashoffset="251" style="filter:drop-shadow(0 0 8px #00f0ff);"/>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl mb-3 neon-cyan">COMUNIDAD Y RETENCIÓN</h3>
+          <p class="text-white/70 text-sm mb-6 leading-relaxed">
+            Hacer que los clientes sean los influenciadores. Entrevistas cortas o dinámicas en el parque con <span class="text-cyan-300">turistas o ciclistas</span>.
+          </p>
+          <div class="space-y-3">
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-brands fa-whatsapp text-cyan-400"></i>
+              <span>Cada venta = nuevo contacto WhatsApp</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-tags text-cyan-400"></i>
+              <span>Promos cortas en días de bajo flujo</span>
+            </div>
+            <div class="flex items-center gap-3 text-sm">
+              <i class="fa-solid fa-users text-cyan-400"></i>
+              <span>Segmentación: universitarios y locales</span>
+            </div>
+          </div>
+          <div class="mt-6 pt-6 border-t border-white/10">
+            <div class="text-xs uppercase tracking-widest text-white/40 mb-1">Objetivo</div>
+            <div class="text-sm text-white/80">Cliente como embajador + fidelización WhatsApp</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal mt-12 neon-card rounded-2xl p-6">
+      <div class="text-xs uppercase tracking-widest text-white/50 mb-3">Distribución del Contenido Semanal</div>
+      <div class="flex h-8 rounded-full overflow-hidden">
+        <div class="bg-pink-500 flex items-center justify-center text-xs font-bold" style="width:30%; box-shadow:0 0 20px #ff2d95;">30%</div>
+        <div class="bg-yellow-400 text-black flex items-center justify-center text-xs font-bold" style="width:50%; box-shadow:0 0 20px #ffe600;">50%</div>
+        <div class="bg-cyan-400 text-black flex items-center justify-center text-xs font-bold" style="width:20%; box-shadow:0 0 20px #00f0ff;">20%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ WEEKLY ROUTINE ============ -->
+<section id="rutina" class="relative py-28 px-6 overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-20"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span class="tag text-green-400 mb-4 inline-block">Capítulo 03</span>
+      <h2 class="font-display text-5xl md:text-7xl mb-4">
+        <span class="neon-green">RUTINA SEMANAL</span>
+      </h2>
+      <p class="font-marker text-xl text-cyan-300">Para no saturarse · Constancia mínima = Rentabilidad</p>
+    </div>
+
+    <div class="relative">
+      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-1 timeline-line rounded-full"></div>
+
+      <div class="space-y-12">
+        <!-- Mon-Tue -->
+        <div class="reveal grid lg:grid-cols-2 gap-8 items-center">
+          <div class="neon-card rounded-3xl p-8 relative">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center">
+                <i class="fa-solid fa-1 text-2xl text-pink-400"></i>
+              </div>
+              <div>
+                <div class="text-xs tracking-[0.3em] text-pink-400 uppercase">Bloque 01</div>
+                <div class="font-display text-2xl neon-pink">LUNES — MARTES</div>
+              </div>
+            </div>
+            <div class="space-y-5">
+              <div class="p-4 rounded-xl bg-pink-500/5 border border-pink-500/20">
+                <div class="flex items-center gap-2 text-pink-300 text-xs uppercase tracking-wider mb-2">
+                  <i class="fa-brands fa-instagram"></i> Redes
+                </div>
+                <p class="text-sm text-white/80">2 a 3 Historias mostrando preparación y frescura de ingredientes (Angie y el equipo).</p>
+              </div>
+              <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+                <div class="flex items-center gap-2 text-green-300 text-xs uppercase tracking-wider mb-2">
+                  <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                </div>
+                <p class="text-sm text-white/80">1 mensaje de reactivación con incentivo: <span class="text-green-300 font-bold">bebida gratis</span> o topping extra para levantar días lentos.</p>
+              </div>
+            </div>
+          </div>
+          <div class="hidden lg:flex justify-center">
+            <div class="text-center">
+              <div class="font-display text-7xl neon-pink flicker">01</div>
+              <div class="font-marker text-xl text-white/60 mt-2">Inicio de semana</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wed-Thu -->
+        <div class="reveal grid lg:grid-cols-2 gap-8 items-center">
+          <div class="hidden lg:flex justify-center order-1">
+            <div class="text-center">
+              <div class="font-display text-7xl neon-yellow flicker-slow">02</div>
+              <div class="font-marker text-xl text-white/60 mt-2">Media semana</div>
+            </div>
+          </div>
+          <div class="neon-card rounded-3xl p-8 relative order-2">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-yellow-500/20 border border-yellow-500/40 flex items-center justify-center">
+                <i class="fa-solid fa-2 text-2xl text-yellow-400"></i>
+              </div>
+              <div>
+                <div class="text-xs tracking-[0.3em] text-yellow-400 uppercase">Bloque 02</div>
+                <div class="font-display text-2xl neon-yellow">MIÉRCOLES — JUEVES</div>
+              </div>
+            </div>
+            <div class="space-y-5">
+              <div class="p-4 rounded-xl bg-yellow-500/5 border border-yellow-500/20">
+                <div class="flex items-center gap-2 text-yellow-300 text-xs uppercase tracking-wider mb-2">
+                  <i class="fa-brands fa-instagram"></i> Reel
+                </div>
+                <p class="text-sm text-white/80">1 Reel muy visual centrado estrictamente en el producto: <span class="text-yellow-300 font-bold">las Alitas BBQ</span>, la Top Burger o el queso estirándose.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+                <div class="flex items-center gap-2 text-cyan-300 text-xs uppercase tracking-wider mb-2">
+                  <i class="fa-solid fa-headset"></i> Ventas
+                </div>
+                <p class="text-sm text-white/80">Atención rápida y toma de pedidos con catálogo optimizado en WhatsApp.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fri-Sat -->
+        <div class="reveal grid lg:grid-cols-2 gap-8 items-center">
+          <div class="neon-card rounded-3xl p-8 relative">
+            <div class="flex items-center gap-4 mb-6">
+              <div class="w-16 h-16 rounded-2xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center">
+                <i class="fa-solid fa-3 text-2xl text-cyan-400"></i>
+              </div>
+              <div>
+                <div class="text-xs tracking-[0.3em] text-cyan-400 uppercase">Bloque 03</div>
+                <div class="font-display text-2xl neon-cyan">VIERNES — SÁBADO</div>
+              </div>
+            </div>
+            <div class="space-y-5">
+              <div class="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+                <div class="flex items-center gap-2 text-cyan-300 text-xs uppercase tracking-wider mb-2">
+                  <i class="fa-solid fa-video"></i> Video de Comunidad
+                </div>
+                <p class="text-sm text-white/80">Local lleno en el Parque Los Libertadores, clientes felices o reposteando las <span class="text-cyan-300 font-bold">creaciones exageradas</span> de los clientes.</p>
+              </div>
+              <div class="p-4 rounded-xl bg-green-500/5 border border-green-500/20">
+                <div class="flex items-center gap-2 text-green-300 text-xs uppercase tracking-wider mb-2">
+                  <i class="fa-brands fa-whatsapp"></i> Estados WhatsApp
+                </div>
+                <p class="text-sm text-white/80">Subir estados mostrando el ambiente del Parque Principal en tiempo real.</p>
+              </div>
+            </div>
+          </div>
+          <div class="hidden lg:flex justify-center">
+            <div class="text-center">
+              <div class="font-display text-7xl neon-cyan flicker">03</div>
+              <div class="font-marker text-xl text-white/60 mt-2">Fin de semana</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal mt-16 text-center">
+      <div class="inline-block neon-card rounded-3xl px-10 py-8">
+        <div class="font-display text-3xl md:text-5xl">
+          <span class="neon-pink">SIMPLICIDAD</span>
+          <span class="text-white/40 mx-3">+</span>
+          <span class="neon-cyan">CONSTANCIA</span>
+        </div>
+        <div class="font-marker text-2xl text-yellow-300 mt-4">= Rentabilidad Sostenida</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ MENU ============ -->
+<section id="menu" class="relative py-28 px-6 overflow-hidden">
+  <div class="max-w-7xl mx-auto relative z-10">
+    <div class="text-center mb-16 reveal">
+      <span class="tag text-orange-400 mb-4 inline-block">Capítulo 04</span>
+      <h2 class="font-display text-5xl md:text-7xl mb-4">
+        <span class="neon-orange">EL MENÚ</span>
+      </h2>
+      <p class="font-marker text-xl text-pink-300">Alitas · Perros · Burgers · Bebidas · Puro Ubaté</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <!-- Alitas BBQ - Best Seller -->
+      <div class="reveal img-zoom neon-card rounded-3xl overflow-hidden group relative" style="border-color:rgba(255,107,53,.4);">
+        <!-- Smoke effect -->
+        <div class="absolute top-0 left-1/4 w-2 h-2 smoke-particle" style="animation-delay:0s; z-index:5;"></div>
+        <div class="absolute top-0 left-1/3 w-3 h-3 smoke-particle" style="animation-delay:1s; z-index:5;"></div>
+        <div class="absolute top-0 left-1/2 w-2 h-2 smoke-particle" style="animation-delay:2s; z-index:5;"></div>
+        <div class="relative h-72">
+          <img src="alitas-bbq.jpg" alt="Alitas BBQ Top Dog" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0612] via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-red-500 text-white text-[10px] font-bold tracking-widest uppercase" style="box-shadow:0 0 20px #ff3838;">
+            <i class="fa-solid fa-crown mr-1"></i> Best Seller
+          </div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl neon-orange mb-2">ALITAS BBQ</h3>
+          <p class="text-sm text-white/60 mb-4">Alitas crujientes bañadas en salsa BBQ casera, acompañadas de maíz, bacon, guacamole y los toppings que tú elijas. <span class="italic text-orange-300">"Se olvida perreando, no llorando"</span>.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag text-orange-400">BBQ Casera</span>
+            <span class="tag text-red-400">Crujientes</span>
+            <span class="tag text-yellow-400">18 Toppings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Burger -->
+      <div class="reveal img-zoom neon-card rounded-3xl overflow-hidden group">
+        <div class="relative h-72">
+          <img src="top-burger.jpg" alt="Top Burger" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0612] via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 tag text-yellow-400 bg-black/60">Estrella</div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl neon-yellow mb-2">TOP BURGER</h3>
+          <p class="text-sm text-white/60 mb-4">Carne a la parrilla, lechuga crujiente, queso doble crema de Ubaté fundido y pan artesanal. Servida con papas en canasta metálica.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag text-yellow-400">Queso Fundido</span>
+            <span class="tag text-orange-400">Parrilla</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Drinks -->
+      <div class="reveal img-zoom neon-card rounded-3xl overflow-hidden group">
+        <div class="relative h-72">
+          <img src="bebidas.jpg" alt="Bebidas Top Dog" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0612] via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 tag text-cyan-400 bg-black/60">Refresco</div>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display text-2xl neon-cyan mb-2">BEBIDAS DE LA CASA</h3>
+          <p class="text-sm text-white/60 mb-4">Limón con frutas, mora con berries, menta fresca. Bebidas que acompañan y refrescan frente a la Basílica.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tag text-cyan-400">Frutas</span>
+            <span class="tag text-green-400">Menta</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customization banner -->
+    <div class="reveal neon-card rounded-3xl p-10 text-center relative overflow-hidden">
+      <div class="absolute -top-20 -left-20 w-60 h-60 rounded-full" style="background:radial-gradient(circle, rgba(255,230,0,.2), transparent);"></div>
+      <div class="absolute -bottom-20 -right-20 w-60 h-60 rounded-full" style="background:radial-gradient(circle, rgba(255,45,149,.2), transparent);"></div>
+      <div class="relative">
+        <div class="font-marker text-2xl text-yellow-300 mb-4">¿Tu estilo? Tu regla.</div>
+        <h3 class="font-display text-4xl md:text-6xl mb-4">
+          <span class="neon-pink">ARMA</span> <span class="neon-yellow">TU</span> <span class="neon-cyan">ACOMODO</span>
+        </h3>
+        <p class="text-white/70 max-w-2xl mx-auto mb-8">
+          12 salsas, 18 toppings, queso doble crema de Ubaté fundido en cámara lenta. El cliente es el chef, la parrilla es el escenario.
+        </p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <span class="px-5 py-2 rounded-full bg-pink-500/10 border border-pink-500/30 text-pink-300 text-sm font-semibold">Queso Doble Crema</span>
+          <span class="px-5 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 text-sm font-semibold">Queso Pera</span>
+          <span class="px-5 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-sm font-semibold">Bacon Crujiente</span>
+          <span class="px-5 py-2 rounded-full bg-green-500/10 border border-green-500/30 text-green-300 text-sm font-semibold">Guacamole</span>
+          <span class="px-5 py-2 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-300 text-sm font-semibold">Maíz</span>
+          <span class="px-5 py-2 rounded-full bg-red-500/10 border border-red-500/30 text-red-300 text-sm font-semibold">Salsa BBQ</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ WHATSAPP STRATEGY ============ -->
+<section id="whatsapp" class="relative py-28 px-6 overflow-hidden">
+  <div class="absolute inset-0">
+    <div class="absolute inset-0" style="background:radial-gradient(ellipse at center, rgba(57,255,20,.08), transparent 60%);"></div>
+  </div>
+  <div class="max-w-6xl mx-auto relative z-10">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <div class="reveal">
+        <span class="tag text-green-400 mb-4 inline-block">Capítulo 05</span>
+        <h2 class="font-display text-5xl md:text-6xl mb-6">
+          <span class="neon-green">WHATSAPP</span><br>
+          <span class="neon-cyan">= VENTAS</span>
+        </h2>
+        <p class="text-lg text-white/80 mb-8 leading-relaxed">
+          Convertir cada venta presencial en un contacto de WhatsApp. Promociones cortas y directas en días de bajas ventas (martes/miércoles), segmentando a universitarios y locales.
+        </p>
+
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-green-500/5 border border-green-500/20">
+            <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400 shrink-0">
+              <i class="fa-solid fa-comment-sms"></i>
+            </div>
+            <div>
+              <div class="font-bold text-green-300 mb-1">Mensajes cortos</div>
+              <p class="text-sm text-white/60">"Agranda tu bebida", "Topping extra gratis" — directo al punto.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-green-500/5 border border-green-500/20">
+            <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400 shrink-0">
+              <i class="fa-solid fa-filter"></i>
+            </div>
+            <div>
+              <div class="font-bold text-green-300 mb-1">Segmentación</div>
+              <p class="text-sm text-white/60">Universitarios y locales por separado. Mensajes relevantes.</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 rounded-2xl bg-green-500/5 border border-green-500/20">
+            <div class="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center text-green-400 shrink-0">
+              <i class="fa-solid fa-circle-play"></i>
+            </div>
+            <div>
+              <div class="font-bold text-green-300 mb-1">Estados en vivo</div>
+              <p class="text-sm text-white/60">Viernes y sábado: ambiente real del Parque Principal.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#" class="btn-neon" style="background:linear-gradient(90deg, #25D366, #128C7E); box-shadow:0 0 25px rgba(37,211,102,.5);">
+          <i class="fa-brands fa-whatsapp text-xl"></i> Pedir por WhatsApp
+        </a>
+      </div>
+
+      <div class="reveal flex justify-center">
+        <div class="relative">
+          <div class="absolute -inset-8 rounded-full" style="background:radial-gradient(circle, rgba(57,255,20,.2), transparent 70%);"></div>
+          <div class="relative w-80 neon-card rounded-[2.5rem] p-3" style="border-color:rgba(57,255,20,.3); box-shadow:0 0 60px rgba(57,255,20,.2);">
+            <div class="rounded-[2rem] overflow-hidden bg-[#0a0612]">
+              <div class="bg-[#075E54] p-4 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
+                  <img src="logo.png" alt="Top Dog" class="w-full h-full object-contain rounded-full bg-white/10">
+                </div>
+                <div>
+                  <div class="font-bold text-white text-sm">Top Dog Ubaté</div>
+                  <div class="text-[10px] text-green-300">en línea</div>
+                </div>
+              </div>
+              <div class="p-4 space-y-3 bg-[#0a0612]">
+                <div class="bg-[#1f2c33] rounded-2xl rounded-tl-sm p-3 text-sm text-white/90 max-w-[80%]">
+                  ¡Hola! 👋 Bienvenido a Top Dog. ¿Qué te preparamos hoy?
+                  <div class="text-[9px] text-white/40 text-right mt-1">10:32 ✓✓</div>
+                </div>
+                <div class="bg-[#005c4b] rounded-2xl rounded-tr-sm p-3 text-sm text-white max-w-[80%] ml-auto">
+                  Quiero unas alitas BBQ 🍗
+                  <div class="text-[9px] text-white/60 text-right mt-1">10:33 ✓✓</div>
+                </div>
+                <div class="bg-[#1f2c33] rounded-2xl rounded-tl-sm p-3 text-sm text-white/90 max-w-[85%]">
+                  <div class="font-bold text-green-300 mb-1">🔥 Promo Martes</div>
+                  Topping extra GRATIS con tus alitas. Solo hoy. Menciona: <span class="text-yellow-300">"Perreando"</span>
+                  <div class="text-[9px] text-white/40 text-right mt-1">10:33 ✓✓</div>
+                </div>
+                <div class="bg-[#1f2c33] rounded-2xl rounded-tl-sm p-3 text-sm text-white/90 max-w-[80%]">
+                  🧀 Queso doble crema fundido incluido
+                  <div class="text-[9px] text-white/40 text-right mt-1">10:34 ✓✓</div>
+                </div>
+                <div class="bg-[#005c4b] rounded-2xl rounded-tr-sm p-3 text-sm text-white max-w-[70%] ml-auto">
+                  ¡Va una! 🙌
+                  <div class="text-[9px] text-white/60 text-right mt-1">10:34 ✓✓</div>
+                </div>
+              </div>
+              <div class="bg-[#1f2c33] p-3 flex items-center gap-2">
+                <div class="flex-1 bg-[#2a3942] rounded-full px-4 py-2 text-xs text-white/40">Mensaje</div>
+                <div class="w-8 h-8 rounded-full bg-[#00a884] flex items-center justify-center text-white">
+                  <i class="fa-solid fa-microphone text-xs"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -right-4 top-12 neon-card rounded-2xl p-3 max-w-[200px] float-y" style="border-color:rgba(255,230,0,.4);">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-bell text-yellow-400"></i>
+              <div class="text-xs">
+                <div class="font-bold text-yellow-300">+1 contacto</div>
+                <div class="text-white/60">Venta registrada</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider-neon max-w-7xl mx-auto"></div>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="relative py-28 px-6 overflow-hidden">
+  <div class="absolute inset-0">
+    <img src="local-exterior.jpg" alt="Top Dog Local" class="w-full h-full object-cover opacity-25">
+    <div class="absolute inset-0 bg-gradient-to-b from-[#0a0612]/80 via-[#0a0612]/60 to-[#0a0612]"></div>
+  </div>
+  <div class="max-w-5xl mx-auto relative z-10 text-center reveal">
+    <img src="logo.png" alt="Top Dog Logo" class="h-40 w-auto mx-auto mb-8 float-y glow-pulse">
+    <h2 class="font-display text-5xl md:text-7xl mb-6">
+      <span class="neon-pink flicker">VEN A</span>
+      <span class="neon-cyan flicker-slow">PERREAR</span>
+    </h2>
+    <p class="font-marker text-2xl text-yellow-300 mb-8">Se olvida perreando, no llorando.</p>
+    <p class="text-lg text-white/70 max-w-2xl mx-auto mb-10">
+      Parque Los Libertadores, frente a la Basílica. Ubaté, Cundinamarca. Todos los días desde que se enciende la parrilla hasta que se apaga el último neon.
+    </p>
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="#" class="btn-neon">
+        <i class="fa-brands fa-whatsapp text-xl"></i> Hacer Pedido
+      </a>
+      <a href="#" class="btn-ghost">
+        <i class="fa-solid fa-location-dot"></i> Cómo Llegar
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="relative py-12 px-6 border-t border-pink-500/20 bg-[#08040f]">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-8 mb-10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <img src="logo.png" alt="Top Dog" class="h-12 w-auto">
+          <div>
+            <div class="font-display text-lg neon-pink">TOP DOG</div>
+            <div class="text-[10px] tracking-[0.3em] text-cyan-300">UBATÉ · COL</div>
+          </div>
+        </div>
+        <p class="text-sm text-white/50">Alitas BBQ, perros, burgers y antojos urbanos frente a la Basílica. Liderado por Angie Murcia.</p>
+      </div>
+      <div>
+        <div class="font-bold text-pink-400 mb-3 text-xs uppercase tracking-widest">Estrategia</div>
+        <ul class="space-y-2 text-sm text-white/60">
+          <li><a href="#angie" class="hover:text-pink-300">Liderazgo de Angie</a></li>
+          <li><a href="#pilares" class="hover:text-pink-300">3 Pilares</a></li>
+          <li><a href="#rutina" class="hover:text-pink-300">Rutina Semanal</a></li>
+          <li><a href="#whatsapp" class="hover:text-pink-300">WhatsApp Ventas</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-bold text-cyan-400 mb-3 text-xs uppercase tracking-widest">Ubicación</div>
+        <ul class="space-y-2 text-sm text-white/60">
+          <li class="flex items-start gap-2"><i class="fa-solid fa-location-dot mt-1"></i> Parque Los Libertadores, Ubaté</li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-church mt-1"></i> Frente a la Basílica</li>
+          <li class="flex items-start gap-2"><i class="fa-solid fa-clock mt-1"></i> Todos los días · Noche</li>
+        </ul>
+      </div>
+      <div>
+        <div class="font-bold text-yellow-400 mb-3 text-xs uppercase tracking-widest">Síguenos</div>
+        <div class="flex gap-3">
+          <a href="#" class="w-10 h-10 rounded-full border border-pink-500/40 flex items-center justify-center text-pink-400 hover:bg-pink-500/10 transition"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-cyan-500/40 flex items-center justify-center text-cyan-400 hover:bg-cyan-500/10 transition"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-green-500/40 flex items-center justify-center text-green-400 hover:bg-green-500/10 transition"><i class="fa-brands fa-whatsapp"></i></a>
+          <a href="#" class="w-10 h-10 rounded-full border border-yellow-500/40 flex items-center justify-center text-yellow-400 hover:bg-yellow-500/10 transition"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="pt-6 border-t border-white/10 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/40">
+      <div>© 2026 Top Dog · Plan de Marketing · Liderazgo de Angie Murcia</div>
+      <div class="font-marker text-pink-400/60">Se olvida perreando, no llorando 🍗</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=> e.target.classList.add('in'), i*80);
+        observer.unobserve(e.target);
+      }
+    });
+  },{ threshold:0.12 });
+  reveals.forEach(r=> observer.observe(r));
+
+  const heroBg = document.querySelector('#hero img');
+  window.addEventListener('scroll', ()=>{
+    if(heroBg && window.scrollY < window.innerHeight){
+      heroBg.style.transform = `translateY(${window.scrollY * 0.3}px) scale(1.1)`;
+    }
+  });
+
+  document.querySelectorAll('.neon-pink, .neon-cyan, .neon-yellow').forEach((el)=>{
+    if(Math.random() > 0.7){
+      el.style.animation = `flicker ${4 + Math.random()*4}s infinite`;
+    }
+  });
+</script>
+
+</body>
+</html>
